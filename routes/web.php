@@ -61,6 +61,13 @@ Route::get('/config-cache', function() {
     return '<h1>Clear Config cleared</h1>';
 });
 
+//dump-autoload
+Route::get('/dump-autoload', function()
+{
+    Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
+});
+
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('brand', [HomeController::class, 'brand'])->name('brand');
