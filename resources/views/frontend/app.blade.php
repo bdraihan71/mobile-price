@@ -8,11 +8,11 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
     {{-- <title>Mobile Price | @yield('title')</title> --}}
     {!! SEOMeta::generate() !!}
-    <meta name="revisit-after" content="2 days"/>
-    <meta name="copyright" content="mobilekhor.com"/>
+    <meta name="revisit-after" content="2 days" />
+    <meta name="copyright" content="mobilekhor.com" />
 
     {!! OpenGraph::generate() !!}
-    
+
     {!! JsonLd::generate() !!}
 
     <!-- Google Font: Source Sans Pro -->
@@ -25,13 +25,27 @@
     {{-- my style --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @stack('styles')
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DHNJ4GXVM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7DHNJ4GXVM');
+    </script>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-2 mb-2">
-                <a href="{{route('home')}}"><img src="{{ asset('images/logo.png') }}" alt="mobilekhor logo" width="320"></a>
+                <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="mobilekhor logo"
+                        width="320"></a>
             </div>
         </div>
     </div>
@@ -106,12 +120,14 @@
                 <div class="col-lg-3 footer-social-link">
                     <h5 class="underline-heading">Social Media</h5>
                     <ul>
-                        <li> <a href="https://www.facebook.com/mobilekhor" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+                        <li> <a href="https://www.facebook.com/mobilekhor" target="_blank"><i
+                                    class="fab fa-facebook-square"></i></a></li>
                     </ul>
                 </div>
 
                 <div class="col-12">
-                    <p>&copy; 2023 <a href="https://mobilekhor.com" class="text-white">mobilekhor.com</a> || All rights reserved</p>
+                    <p>&copy; 2023 <a href="https://mobilekhor.com" class="text-white">mobilekhor.com</a> || All rights
+                        reserved</p>
                 </div>
             </div>
         </div>
