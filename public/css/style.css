@@ -1,0 +1,147 @@
+body {
+    background-color: #ffffff;
+}
+
+.homesidebar ul {
+    background-color: #f8f8f8;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.homesidebar li {
+    border-bottom: 1px dotted #e7e7e7;
+    padding: 4px 5px;
+}
+
+.homesidebar a {
+    color: #17202a;
+    cursor: pointer;
+    display: block;
+    line-height: 28px;
+    text-indent: 5px;
+    text-decoration: none;
+    width: 100%;
+}
+
+.homesidebar i.fas,
+i.far {
+    font-size: 16px;
+    padding-right: 6px;
+}
+
+.homesidebar li:hover {
+    background-color: #d5d8dc;
+}
+
+.homepage-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.my-top-nav{
+    padding: 0px !important;
+}
+
+.active-nav{
+    background-color: #108fa3;
+}
+
+.top-nav li a{
+    color: white !important;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.top-nav li {
+    padding: 2px;
+}
+
+.top-nav li:hover{
+    display: block;
+    background-color: #108fa3;
+}
+
+/* search bar */
+#search_mobile{
+    position: relative;
+}
+
+#search_result{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: rgb(167, 162, 162);
+    z-index: 999;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+/* single mobile page */
+.single-mobile-img {
+    margin-top: 20px;
+    padding-left: 15px;
+}
+
+.single-mobile-img img{
+   width: 100%;
+}
+
+.single-mobile-head{
+    margin-top: 20px;
+}
+.single-mobile-head h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #17202a;
+}
+
+.single-mobile-head h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #17202a;
+}
+
+.single-mobile-head h5 {
+    margin-top: 15px;
+}
+
+.single-mobile-head i {
+    font-size: 40px;
+}
+.mobile-head-data{
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+/* brand page */
+.brand-card div{
+    padding: 5px !important;
+}
+.brand-card:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* footer section */
+.footer-link ul{
+    list-style-type: none;
+}
+
+.footer-link ul li a{
+    color: white;
+    font-size: 16px;
+}
+
+.underline-heading{
+    display:inline-block;
+    border-bottom:1px solid yellow;
+    padding-bottom:2px;
+}
+
+.footer-social-link ul{
+    list-style-type: none;
+}
+
+.footer-social-link ul li a{
+    color: white;
+    font-size: 30px;
+}

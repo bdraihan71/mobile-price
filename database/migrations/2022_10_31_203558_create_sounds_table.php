@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSoundsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('sounds', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id');
+            $table->bigInteger('mobile_model_id');
+            $table->string('loudspeaker')->nullable();
+            $table->string('_3_5mm_jack')->nullable();
+            $table->string('sound_other')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('sounds');
+    }
+}
