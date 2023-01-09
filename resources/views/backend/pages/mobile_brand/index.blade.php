@@ -180,7 +180,7 @@
                 var title = $('#brand_name').val();
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/api/slug_generator?title=' + title + '&model=MobileBrand' + '&table_slug_name=brand_slug',
+                    url: '/slug_generator?title=' + title + '&model=MobileBrand' + '&table_slug_name=brand_slug',
                     success: function(data) {
                         console.log(data);
                         $('#brand_slug').val(data.slug);

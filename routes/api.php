@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/slug_generator', [App\Http\Controllers\backend\SlugGenerateApiController::class, 'slugGenerator']);
-Route::get('/highlight_generator', [HighlightGeneratorController::class, 'highlightGenerator']);
+// Route::get('/slug_generator', [App\Http\Controllers\backend\SlugGenerateApiController::class, 'slugGenerator']);
+// Route::get('/highlight_generator', [HighlightGeneratorController::class, 'highlightGenerator']);

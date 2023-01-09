@@ -624,7 +624,7 @@
                 var title = $('#model_name').val();
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/api/slug_generator?title=' + title + '&model=MobileModel' + '&table_slug_name=model_slug',
+                    url: '/slug_generator?title=' + title + '&model=MobileModel' + '&table_slug_name=model_slug',
                     success: function(data) {
                         console.log(data);
                         $('#model_slug').val(data.slug + '-price-in-bangladesh');

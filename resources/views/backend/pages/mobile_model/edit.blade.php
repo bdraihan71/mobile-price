@@ -714,7 +714,7 @@
                 var title = $('#model_name').val();
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/api/slug_generator?title=' + title + '&model=MobileModel' +
+                    url: '/slug_generator?title=' + title + '&model=MobileModel' +
                         '&table_slug_name=model_slug',
                     success: function(data) {
                         console.log(data);
@@ -732,7 +732,7 @@
                 var model = {{ $mobile_model->id }}
                 $.ajax({
                     type: 'GET', //THIS NEEDS TO BE GET
-                    url: '/api/highlight_generator?sample=' + sample + '&model=' + model,
+                    url: '/highlight_generator?sample=' + sample + '&model=' + model,
                     success: function(data) {
                         console.log(data.generator_sample);
                         $('#highlight').val(data.generator_sample);

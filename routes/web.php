@@ -3,9 +3,11 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\backend\HighlightGeneratorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MobileBrandController;
 use App\Http\Controllers\Backend\MobileModelController;
+use App\Http\Controllers\backend\SlugGenerateApiController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -61,11 +63,11 @@ Route::get('/config-cache', function() {
     return '<h1>Clear Config cleared</h1>';
 });
 
-//dump-autoload
-Route::get('/dump-autoload', function()
+//view cache
+Route::get('/view-cache', function()
 {
-    Artisan::call('dump-autoload');
-    echo 'dump-autoload complete';
+    Artisan::call('view:cache');
+    echo 'view cached';
 });
 
 
@@ -81,6 +83,11 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/privacy_policy', [HomeController::class, 'privacyPolicy'])->name('privacyandpolicy');
 Route::get('/mobile_search/{mobile}', [HomeController::class, 'mobileSearch']);
+
+
+Route::get('/slug_generator', [SlugGenerateApiController::class, 'slugGenerator']);
+Route::get('/highlight_generator', [HighlightGeneratorController::class, 'highlightGenerator']);
+
 
 
 // Route::get('/test', function () {
