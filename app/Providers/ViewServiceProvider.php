@@ -37,7 +37,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer("frontend.partials.left_sidebar_popular_mobile", function($view){
-            $mobile_models = MobileModel::select('id', 'model_name', 'model_slug')->orderBy('visitor_count', 'DESC')->take(10)->get();
+            $mobile_models = MobileModel::select('id', 'model_name', 'model_slug')->where('is_published', true)->orderBy('visitor_count', 'DESC')->take(10)->get();
             $view->with("mobile_models", $mobile_models);
         });
     }
