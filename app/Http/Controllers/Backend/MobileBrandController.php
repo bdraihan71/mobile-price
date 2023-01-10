@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\MobileBrand;
@@ -35,7 +35,7 @@ class MobileBrandController extends Controller
         $imageName = null;
         if($request->file('brand_image') != null)
         {
-            $folder='images\brand_images';
+            $folder='images/brand_images';
             $imageName = $request->get('brand_slug').'.'.$request->brand_image->extension();  
             $request->brand_image->move(public_path($folder), $imageName);
         }else{
@@ -82,7 +82,7 @@ class MobileBrandController extends Controller
 
         if($request->file('brand_image') != null)
         {
-            $folder='images\brand_images';
+            $folder='images/brand_images';
             $imageName = $request->get('brand_slug').'.'.$request->brand_image->extension();
             $request->brand_image->move(public_path($folder), $imageName);
             unlink("images/brand_images/".$mobile_brand->brand_image);
@@ -91,7 +91,7 @@ class MobileBrandController extends Controller
             array_shift($brand_image);
             array_unshift($brand_image, $request->get('brand_slug'));
             $imageName = implode(".",$brand_image);
-            rename('images\brand_images\\'.$mobile_brand->brand_image, 'images\brand_images\\'.$imageName);
+            rename('images/brand_images\\'.$mobile_brand->brand_image, 'images/brand_images\\'.$imageName);
         }
 
         $mobile_brand->user_id = auth()->user()->id;  

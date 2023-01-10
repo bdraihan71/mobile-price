@@ -3,11 +3,11 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\backend\HighlightGeneratorController;
+use App\Http\Controllers\Backend\HighlightGeneratorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\MobileBrandController;
 use App\Http\Controllers\Backend\MobileModelController;
-use App\Http\Controllers\backend\SlugGenerateApiController;
+use App\Http\Controllers\Backend\SlugGenerateApiController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Auth;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Battery;
@@ -117,7 +117,7 @@ class MobileModelController extends Controller
         $imageName = null;
         if($request->file('model_image') != null)
         {
-            $folder='images\model_images';
+            $folder='images/model_images';
             $imageName = $request->get('model_slug').'.'.$request->model_image->extension();  
             $request->model_image->move(public_path($folder), $imageName);
         }else{
@@ -236,7 +236,7 @@ class MobileModelController extends Controller
 
         if($request->file('model_image') != null && $mobile_model->model_image != null)
         {
-            $folder='images\model_images';
+            $folder='images/model_images';
             $imageName = $request->get('model_slug').'.'.$request->model_image->extension();
             $request->model_image->move(public_path($folder), $imageName);
             unlink("images/model_images/".$mobile_model->model_image);
@@ -245,7 +245,7 @@ class MobileModelController extends Controller
         
         if($request->file('model_image') != null && $mobile_model->model_image == null)
         {
-            $folder='images\model_images';
+            $folder='images/model_images';
             $imageName = $request->get('model_slug').'.'.$request->model_image->extension();
             $request->model_image->move(public_path($folder), $imageName);
             $mobile_model->model_image = $imageName;
