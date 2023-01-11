@@ -384,6 +384,12 @@
                     </div>
 
                 </div>
+                <div class="card-footer">
+                    <form method="POST" action="{{ route('mobile.model.published', $mobile_model->id) }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

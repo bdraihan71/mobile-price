@@ -689,4 +689,14 @@ class MobileModelController extends Controller
             }
         }
     }
+
+    public function published($model_id)
+    {
+        $mobile_model = MobileModel::find($model_id);
+        $mobile_model->is_published = true;
+        $mobile_model->save();
+
+        Alert::success('Success', 'Mobile Brand Updated successfully.');
+        return redirect()->route('mobile.model.index');
+    }
 }

@@ -129,6 +129,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
             Route::get('/edit/{id}', [MobileModelController::class, 'edit'])->name('mobile.model.edit');
             Route::put('/update/{id}', [MobileModelController::class, 'update'])->name('mobile.model.update');
             Route::delete('/{id}', [MobileModelController::class, 'destroy'])->name('mobile.model.destroy');
+            Route::post('/published/{id}', [MobileModelController::class, 'published'])->name('mobile.model.published');
 
             Route::post('/price', [MobileModelController::class, 'storePrice'])->name('store.price');
             Route::delete('/price/{id}', [MobileModelController::class, 'destoryPrice'])->name('delete.price');
