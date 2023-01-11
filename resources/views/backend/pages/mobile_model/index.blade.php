@@ -49,11 +49,11 @@
                                         height="50" />
                                 @endif
                             </td>
-                            <td>status</td>
+                            <td>{{ $item->is_published == true ? 'published' : 'Draft' }}</td>
                             <td>{{ $item->updated_at->toDayDateTimeString() }}</td>
                             <td>
                                 <a href="{{ route('mobile.model.view', $item->id) }}" class="btn btn-primary"><i
-                                    class="fas fa-paper-plane"></i></a>
+                                        class="fas fa-paper-plane"></i></a>
 
                                 <a href="{{ route('mobile.model.edit', $item->id) }}" class="btn btn-primary"><i
                                         class="fas fa-edit"></i></a>
