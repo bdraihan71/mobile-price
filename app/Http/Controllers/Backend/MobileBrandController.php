@@ -91,7 +91,7 @@ class MobileBrandController extends Controller
             array_shift($brand_image);
             array_unshift($brand_image, $request->get('brand_slug'));
             $imageName = implode(".",$brand_image);
-            rename('images/brand_images\\'.$mobile_brand->brand_image, 'images/brand_images\\'.$imageName);
+            rename('images/brand_images/'.$mobile_brand->brand_image, 'images/brand_images/'.$imageName);
         }
 
         $mobile_brand->user_id = auth()->user()->id;  
