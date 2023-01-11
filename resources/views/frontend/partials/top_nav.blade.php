@@ -8,19 +8,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto top-nav">
                 <li class="nav-item {{request()->routeIs('home*') ? 'active-nav' : '' }}">
-                    <a class="nav-link" href="{{route('home')}}">Home</a>
+                    <a class="nav-link ml-2" href="{{route('home')}}">Home</a>
                 </li>
                 <li class="nav-item {{request()->routeIs('brand*') ? 'active-nav' : '' }}">
-                    <a class="nav-link" href="{{route('brand')}}">Brand</a>
+                    <a class="nav-link ml-2" href="{{route('brand')}}">Brand</a>
                 </li>
                 <li class="nav-item {{request()->routeIs('contact*') ? 'active-nav' : '' }}">
-                    <a class="nav-link" href="{{route('contact.index')}}">Contact</a>
+                    <a class="nav-link ml-2" href="{{route('contact.index')}}">Contact</a>
                 </li>
                 <li class="nav-item {{request()->routeIs('about') ? 'active-nav' : '' }}">
-                    <a class="nav-link" href="{{route('about')}}">About</a>
+                    <a class="nav-link ml-2" href="{{route('about')}}">About</a>
                 </li>
                 <li class="nav-item {{request()->routeIs('privacyandpolicy') ? 'active-nav' : '' }}">
-                    <a class="nav-link" href="{{route('privacyandpolicy')}}">Privacy Policy</a>
+                    <a class="nav-link ml-2" href="{{route('privacyandpolicy')}}">Privacy Policy</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('contact.index')}}">Disclamer</a>

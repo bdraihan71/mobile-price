@@ -100,14 +100,14 @@
     <footer class="bg-info mt-2">
         <div class="container">
             <div class="row pt-3">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                     <h5 class="underline-heading">About Us</h4>
                         <p>We have a dedicated research team who are very passionate and always up to date with new
                             features and specifications of the latest phones and gadgets. Our team tirelessly work
                             around the clock to bring you the latest information and best reviews. We really hope you
                             will be benefited using our services.</p>
                 </div>
-                <div class="col-lg-3 footer-link">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-link">
                     <h5 class="underline-heading">Useful Links</h5>
                     <ul>
                         <li> <a href="{{ route('home') }}">Home</a></li>
@@ -117,7 +117,7 @@
                         <li> <a href="{{ route('privacyandpolicy') }}">Privacy Policy</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 footer-social-link">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6 footer-social-link">
                     <h5 class="underline-heading">Social Media</h5>
                     <ul>
                         <li> <a href="https://www.facebook.com/mobilekhor" target="_blank"><i
