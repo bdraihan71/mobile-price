@@ -133,7 +133,7 @@
                 {{-- for mobile OverView (extra ) section  --}}
                 <h4 class="bg-success pt-2 pb-2 text-center">Model OverView (extra )</h4>
                 <div class="row">
-                    <div class="col-md-2">
+                    {{-- <div class="col-md-2">
                         <div class="form-group">
                             <label>Generate Highlight</label>
                             <select class="form-control" name="sample" id="sample">
@@ -155,11 +155,14 @@
                                 </option>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-md-10">
+                    </div> --}}
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Model Highlight</label>
-                            <textarea class="form-control" rows="5" id="highlight" name="highlight" placeholder="Enter Model highlight">{{ old('highlight') ?? $mobile_model->highlight }}</textarea>
+                            {{-- <textarea class="form-control" rows="5" id="highlight" name="highlight" placeholder="Enter Model highlight">{{ old('highlight') ?? $mobile_model->highlight }}</textarea> --}}
+                            <textarea id="highlight" name="highlight">
+                                {{ old('highlight') ?? $mobile_model->highlight }}
+                            </textarea>
                         </div>
                     </div>
                 </div>
@@ -754,6 +757,9 @@
                     height: 150
                 })
                 $('#question').summernote({
+                    height: 200
+                })
+                $('#highlight').summernote({
                     height: 200
                 })
             })
