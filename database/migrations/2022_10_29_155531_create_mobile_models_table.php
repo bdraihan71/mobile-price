@@ -32,6 +32,7 @@ class CreateMobileModelsTable extends Migration
             $table->text('cons')->nullable();
             $table->text('questions')->nullable();
             $table->boolean('is_published')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

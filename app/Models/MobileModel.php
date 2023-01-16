@@ -10,6 +10,8 @@ class MobileModel extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $dates = ['published_at'];
+
     public function network()
     {
         return $this->hasOne(Network::class);

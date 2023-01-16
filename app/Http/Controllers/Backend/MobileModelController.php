@@ -694,6 +694,7 @@ class MobileModelController extends Controller
     {
         $mobile_model = MobileModel::find($model_id);
         $mobile_model->is_published = true;
+        $mobile_model->published_at = now();
         $mobile_model->save();
 
         Alert::success('Success', 'Mobile Brand Updated successfully.');

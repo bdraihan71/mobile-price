@@ -50,7 +50,7 @@
                                 @endif
                             </td>
                             <td>{{ $item->is_published == true ? 'published' : 'Draft' }}</td>
-                            <td>{{ $item->updated_at->toDayDateTimeString() }}</td>
+                            <td>{{ !empty($item->published_at) ? $item->published_at->toDayDateTimeString() : ''}}</td>
                             <td>
                                 <a href="{{ route('mobile.model.view', $item->id) }}" class="btn btn-primary"><i
                                         class="fas fa-paper-plane"></i></a>
