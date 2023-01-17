@@ -20,12 +20,12 @@
             <table id="mobile_brand_datatable" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Serial Number</th>
+                        <th>SL</th>
                         <th>Brand Name</th>
                         <th>Model Name</th>
                         <th>Model Slug</th>
-                        <th>Visitor Count</th>
-                        <th>Model Image</th>
+                        <th>Visitor</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th>Published Date</th>
                         <th>Action</th>
@@ -95,12 +95,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Serial Number</th>
+                        <th>SL</th>
                         <th>Brand Name</th>
                         <th>Model Name</th>
                         <th>Model Slug</th>
-                        <th>Visitor Count</th>
-                        <th>Model Image</th>
+                        <th>Visitor</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th>Published Date</th>
                         <th>Action</th>
