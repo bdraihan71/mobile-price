@@ -17,7 +17,7 @@ class CreateMainCamerasTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('mobile_model_id');
-            $table->string('main_camera_camera')->nullable();
+            $table->text('main_camera_camera')->nullable();
             $table->string('main_camera_features')->nullable();
             $table->string('main_camera_video')->nullable();
             $table->string('main_camera_other')->nullable();
