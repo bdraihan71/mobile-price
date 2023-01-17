@@ -26,7 +26,7 @@ class MobileModelController extends Controller
 {
     public function index()
     { 
-        $mobile_models = MobileModel::get();
+        $mobile_models = MobileModel::orderBy('id', 'DESC')->get();
         return view('backend.pages.mobile_model.index')->with('mobile_models', $mobile_models);
     }
 
