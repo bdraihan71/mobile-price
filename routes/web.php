@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\MobileModelController;
 use App\Http\Controllers\Backend\SlugGenerateApiController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\RSSFeedController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Auth;
 
@@ -140,6 +141,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
 Route::get('sitemap.xml', [SitemapController::class, 'index']);
+Route::get('feed', [RSSFeedController::class, 'index']);
 
 // Route::get('/admin', [App\Http\Controllers\Backend\AdminController::class, 'index'])->name('admin');
 
