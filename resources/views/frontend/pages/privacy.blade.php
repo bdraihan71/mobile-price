@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h1 class="text-center mb-4">Privacy Policy for MobileKhor</h1>
-                <p><b>At mobilekhor.com</b>, accessible from http://www.mobilekhor.com, one of our main priorities is the privacy
+                <p><b>At mobilekhor.com</b>, accessible from https://www.mobilekhor.com, one of our main priorities is the privacy
                     of our users. This Privacy Policy document contains various types of information that is collected and
                     recorded by mobilekhor.com and how we use it.
                 </p>
