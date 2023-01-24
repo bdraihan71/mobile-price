@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="col-lg-5 single-mobile-img">
-        <img src="{{ asset('images/model_images/'. $mobile_model->model_image) }}" alt="{{$mobile_model->model_slug}}">
+        <img src="{{ asset('images/model_images/' . $mobile_model->model_image) }}" alt="{{ $mobile_model->model_slug }}">
     </div>
     <div class="col-lg-7 single-mobile-head">
         <h1>{{ $mobile_model->model_name }} Price And Specifications</h1>
@@ -802,25 +802,26 @@
         </div>
 
         <div>
-            <h3 class="text-center mt-4">Related Phones</h3>
-            <div class="row">
-                @foreach ($related_models as $item)
-                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 p-1">
-                        <div class="card homepage-card">
-                            <div class="card-body text-center">
-                                <img class="img-fluid"
-                                    src="{{ asset('images/model_images/'. $item->model_image) }}"
-                                    alt="{{$item->model_slug}}" width="160">
-                                <h6 class="text-bold mt-1">{{ $item->model_name }}</h6>
-                                <h6 class="mt-3 text-danger">{{ modelPrice($item->prices) }}</h6>
-                                <a href="{{ route('model.name', $item->model_slug) }}"
-                                    class="btn btn-info shadow stretched-link">View
-                                    Details</a>
+            @if (count($related_models) > 0)
+                <h3 class="text-center mt-4">Related Phones</h3>
+                <div class="row">
+                    @foreach ($related_models as $item)
+                        <div class="col-6 col-sm-4 col-md-4 col-lg-3 p-1">
+                            <div class="card homepage-card">
+                                <div class="card-body text-center">
+                                    <img class="img-fluid" src="{{ asset('images/model_images/' . $item->model_image) }}"
+                                        alt="{{ $item->model_slug }}" width="160">
+                                    <h6 class="text-bold mt-1">{{ $item->model_name }}</h6>
+                                    <h6 class="mt-3 text-danger">{{ modelPrice($item->prices) }}</h6>
+                                    <a href="{{ route('model.name', $item->model_slug) }}"
+                                        class="btn btn-info shadow stretched-link">View
+                                        Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
     </div>

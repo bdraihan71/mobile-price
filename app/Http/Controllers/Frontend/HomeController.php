@@ -17,7 +17,7 @@ class HomeController extends Controller
         $models = MobileModel::query()
                 ->select('id', 'model_name', 'model_slug', 'model_image')
                 ->with('prices')->where('is_published', true)
-                ->latest('created_at')->paginate(48);
+                ->latest('published_at')->paginate(24);
 
         // Seo 
         SEOMeta::setTitle("Mobile Phone Price in Bangladesh 2023 | mobilekhor.com");
@@ -78,7 +78,7 @@ class HomeController extends Controller
     {
         $brand = MobileBrand::where('brand_slug', $brand)->first();
         $models = MobileModel::with('prices')->where('mobile_brand_id', $brand->id)
-                    ->where('is_published', true)->orderBy('created_at', 'DESC')->paginate(48);
+                    ->where('is_published', true)->orderBy('published_at', 'DESC')->paginate(24);
         
         $brand_key = 'brand_'. $brand->id;
         if(!Session::has($brand_key)){
@@ -124,7 +124,7 @@ class HomeController extends Controller
                 ->whereBetween('price', [$lower_price, $higher_price])
                 ->distinct();
         })->where('is_published', true)
-        ->orderBy('created_at', 'DESC')->paginate(48);
+        ->orderBy('published_at', 'DESC')->paginate(24);
 
         // Seo 
         SEOMeta::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2023");
@@ -157,6 +157,7 @@ class HomeController extends Controller
         $model_key = 'model_'. $mobile_model->id;
         $related_models = MobileModel::where('mobile_brand_id', $mobile_model->mobile_brand_id)
                         ->where('is_published', true)
+                        ->where('id', '!=', $mobile_model->id)
                         ->orderBy('visitor_count', 'DESC')
                         ->paginate(8);
 
