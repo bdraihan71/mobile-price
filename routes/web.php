@@ -142,6 +142,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 Route::get('sitemap.xml', [SitemapController::class, 'index']);
 Route::get('feed', [RSSFeedController::class, 'index']);
+Route::get('/ads.txt',function(){
+    header('Location: https://srv.adstxtmanager.com/49460/mobilekhor.com');
+    exit;
+ });
 
 // Route::get('/admin', [App\Http\Controllers\Backend\AdminController::class, 'index'])->name('admin');
 
