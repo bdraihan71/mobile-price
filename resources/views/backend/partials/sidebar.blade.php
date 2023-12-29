@@ -21,30 +21,32 @@
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                   data-accordion="false">
-                  <li class="nav-item {{ request()->routeIs('mobile_brand*') ? 'menu-open' : '' }}">
-                      <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-building"></i>
-                          <p>
-                              Mobile Brand
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('mobile.brand.index') }}"
-                                  class="nav-link {{ request()->routeIs('mobile.brand.index') ? 'active' : '' }}">
-                                  <i class="fas fa-list nav-icon"></i>
-                                  <p>Brand List/Create</p>
-                              </a>
-                          </li>
-                          {{-- <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Brand View/Edit</p>
-                                    </a>
-                                </li> --}}
-                      </ul>
-                  </li>
+                  @if (in_array(auth()->user()->role, ['super-admin', 'admin']))
+                      <li class="nav-item {{ request()->routeIs('mobile_brand*') ? 'menu-open' : '' }}">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-building"></i>
+                              <p>
+                                  Mobile Brand
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="{{ route('mobile.brand.index') }}"
+                                      class="nav-link {{ request()->routeIs('mobile.brand.index') ? 'active' : '' }}">
+                                      <i class="fas fa-list nav-icon"></i>
+                                      <p>Brand List/Create</p>
+                                  </a>
+                              </li>
+                              {{-- <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Brand View/Edit</p>
+                                        </a>
+                                    </li> --}}
+                          </ul>
+                      </li>
+                  @endif
 
                   <li class="nav-item {{ request()->routeIs('mobile_model*') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link">
@@ -62,6 +64,7 @@
                                   <p>Model List</p>
                               </a>
                           </li>
+                          @if (in_array(auth()->user()->role, ['super-admin', 'admin']))
                           <li class="nav-item">
                               <a href="{{ route('mobile.model.create') }}"
                                   class="nav-link {{ request()->routeIs('mobile.model.create') ? 'active' : '' }}">
@@ -76,27 +79,30 @@
                                   <p>Model Create By Json</p>
                               </a>
                           </li>
+                            @endif
                       </ul>
                   </li>
 
-                  <li class="nav-item">
-                      <a href="{{ route('admin') }}"
-                          class="nav-link {{ request()->routeIs('admin') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-users"></i>
-                          <p>
-                              Admin
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('message') }}"
-                        class="nav-link {{ request()->routeIs('message') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-envelope"></i>
-                        <p>
-                            Message
-                        </p>
-                    </a>
-                </li>
+                  @if (in_array(auth()->user()->role, ['super-admin', 'admin']))
+                      <li class="nav-item">
+                          <a href="{{ route('admin') }}"
+                              class="nav-link {{ request()->routeIs('admin') ? 'active' : '' }}">
+                              <i class="nav-icon fas fa-users"></i>
+                              <p>
+                                  Admin
+                              </p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="{{ route('message') }}"
+                              class="nav-link {{ request()->routeIs('message') ? 'active' : '' }}">
+                              <i class="nav-icon fas fa-envelope"></i>
+                              <p>
+                                  Message
+                              </p>
+                          </a>
+                      </li>
+                  @endif
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

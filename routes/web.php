@@ -108,13 +108,13 @@ Route::post('/my_home_login', [AdminController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     // register and  Routes
-    Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::post('/register', [AdminController::class, 'register'])->name('register');
+    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('role:super-admin,admin');
+    Route::post('/register', [AdminController::class, 'register'])->name('register')->middleware('role:super-admin,admin');
     Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::get('/message', [AdminController::class, 'message'])->name('message');
+    Route::get('/message', [AdminController::class, 'message'])->name('message')->middleware('role:super-admin,admin');
 
     Route::prefix('mobile')->group(function () {
-        Route::prefix('brand')->group(function () {
+        Route::middleware('role:super-admin,admin')->prefix('brand')->group(function () {
             Route::get('/', [MobileBrandController::class, 'index'])->name('mobile.brand.index');
             Route::post('/', [MobileBrandController::class, 'store'])->name('mobile.brand.store');
             Route::get('/edit/{id}', [MobileBrandController::class, 'edit'])->name('mobile.brand.edit');
@@ -122,16 +122,16 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
             Route::delete('/{id}', [MobileBrandController::class, 'destroy'])->name('mobile.brand.destroy');
         });
         Route::prefix('model')->group(function () {
-            Route::get('/create', [MobileModelController::class, 'create'])->name('mobile.model.create');
-            Route::get('/create/create_by_json', [MobileModelController::class, 'createByJson'])->name('mobile.model.create_by_json');
+            Route::get('/create', [MobileModelController::class, 'create'])->name('mobile.model.create')->middleware('role:super-admin,admin');
+            Route::get('/create/create_by_json', [MobileModelController::class, 'createByJson'])->name('mobile.model.create_by_json')->middleware('role:super-admin,admin');
             Route::get('/', [MobileModelController::class, 'index'])->name('mobile.model.index');
             Route::get('/{id}', [MobileModelController::class, 'view'])->name('mobile.model.view');
-            Route::post('/', [MobileModelController::class, 'store'])->name('mobile.model.store');
-            Route::post('/by_json', [MobileModelController::class, 'storeByJson'])->name('mobile.model.store.json');
+            Route::post('/', [MobileModelController::class, 'store'])->name('mobile.model.store')->middleware('role:super-admin,admin');
+            Route::post('/by_json', [MobileModelController::class, 'storeByJson'])->name('mobile.model.store.json')->middleware('role:super-admin,admin');
             Route::get('/edit/{id}', [MobileModelController::class, 'edit'])->name('mobile.model.edit');
             Route::put('/update/{id}', [MobileModelController::class, 'update'])->name('mobile.model.update');
-            Route::delete('/{id}', [MobileModelController::class, 'destroy'])->name('mobile.model.destroy');
-            Route::post('/published/{id}', [MobileModelController::class, 'published'])->name('mobile.model.published');
+            Route::delete('/{id}', [MobileModelController::class, 'destroy'])->name('mobile.model.destroy')->middleware('role:super-admin,admin');
+            Route::post('/published/{id}', [MobileModelController::class, 'published'])->name('mobile.model.published')->middleware('role:super-admin,admin');
 
             Route::post('/price', [MobileModelController::class, 'storePrice'])->name('store.price');
             Route::delete('/price/{id}', [MobileModelController::class, 'destoryPrice'])->name('delete.price');
