@@ -78,7 +78,7 @@ class AdminController extends Controller
 
     public function message()
     {
-        $messages = Contact::get();
+        $messages = Contact::orderBy('created_at', 'desc')->get();
         return view('backend.pages.message')->with([
             'messages' => $messages
         ]);
