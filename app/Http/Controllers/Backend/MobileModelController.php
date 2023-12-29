@@ -25,31 +25,24 @@ use Illuminate\Support\Facades\Validator;
 class MobileModelController extends Controller
 {
     public function index()
-    { 
-        $mobile_models = MobileModel::orderBy('id', 'DESC')->get();
-        return view('backend.pages.mobile_model.index')->with('mobile_models', $mobile_models);
+    {
+        $mobile_models = MobileModel::with('mobileBrand')->orderBy('id', 'DESC')->get();
+        return view('backend.pages.mobile_model.index', compact('mobile_models'));
     }
 
     public function view($id)
     {
-        $mobile_model = MobileModel::find($id);
-        return view('backend.pages.mobile_model.view')->with([
-            'mobile_model' => $mobile_model,
-            'mobile_brand' => $mobile_model->mobileBrand != null ? $mobile_model->mobileBrand : $mobile_model,
-            'network' => $mobile_model->network,
-            'launch' => $mobile_model->launch,
-            'body' => $mobile_model->body,
-            'display' => $mobile_model->display,
-            'platform' => $mobile_model->platform,
-            'memory' => $mobile_model->memory,
-            'mainCamera' => $mobile_model->mainCamera,
-            'selfieCamera' => $mobile_model->selfieCamera,
-            'sound' => $mobile_model->sound,
-            'connectivity' => $mobile_model->connectivity,
-            'feature' => $mobile_model->feature,
-            'battery' => $mobile_model->battery,
-            'prices' => $mobile_model->prices
-        ]);
+        $mobile_model = MobileModel::with([
+            'mobileBrand', 'network', 'launch', 'body', 'display', 'platform', 'memory',
+            'mainCamera', 'selfieCamera', 'sound', 'connectivity', 'feature', 'battery', 'prices'
+        ])->findOrFail($id);
+        
+        if (!in_array(auth()->user()->role, ['super-admin', 'admin']) && $mobile_model->published_at != null) {
+            Alert::error('Validation Error', "You can't edit this model");
+            return redirect()->back()->withInput();
+        }
+
+        return view('backend.pages.mobile_model.view', compact('mobile_model'));
     }
 
     public function create()
@@ -83,7 +76,6 @@ class MobileModelController extends Controller
             'feature' => $mobile_model->feature,
             'battery' => $mobile_model->battery
         ]);
-
     }
 
 
@@ -105,7 +97,7 @@ class MobileModelController extends Controller
 
     public function store(Request $request)
     {
-        
+
         // dd($request->all());
         $validator = $this->modelValidator($request);
 
@@ -115,28 +107,27 @@ class MobileModelController extends Controller
         }
 
         $imageName = null;
-        if($request->file('model_image') != null)
-        {
-            $folder='images/model_images';
-            $imageName = $request->get('model_slug').'.'.$request->model_image->extension();  
+        if ($request->file('model_image') != null) {
+            $folder = 'images/model_images';
+            $imageName = $request->get('model_slug') . '.' . $request->model_image->extension();
             $request->model_image->move(public_path($folder), $imageName);
-        }else{
+        } else {
             Alert::error('Validation Error', "Image Not Found");
             return redirect()->back()->withInput();
         }
-        
-  
-        $mobile_model = new MobileModel;  
-        $mobile_model->user_id = auth()->user()->id;  
-        $mobile_model->model_name = $request->get('model_name');  
-        $mobile_model->model_slug = $request->get('model_slug');  
-        $mobile_model->mobile_brand_id = $request->get('mobile_brand_id');  
-        $mobile_model->model_type = $request->get('model_type');  
-        $mobile_model->model_title = $request->get('model_title');  
-        $mobile_model->model_description = $request->get('model_description');  
-        $mobile_model->model_Keyword = $request->get('model_Keyword'); 
-        $mobile_model->model_other = $request->get('model_other'); 
-        $mobile_model->model_colors = $request->get('model_colors'); 
+
+
+        $mobile_model = new MobileModel;
+        $mobile_model->user_id = auth()->user()->id;
+        $mobile_model->model_name = $request->get('model_name');
+        $mobile_model->model_slug = $request->get('model_slug');
+        $mobile_model->mobile_brand_id = $request->get('mobile_brand_id');
+        $mobile_model->model_type = $request->get('model_type');
+        $mobile_model->model_title = $request->get('model_title');
+        $mobile_model->model_description = $request->get('model_description');
+        $mobile_model->model_Keyword = $request->get('model_Keyword');
+        $mobile_model->model_other = $request->get('model_other');
+        $mobile_model->model_colors = $request->get('model_colors');
         $mobile_model->model_image = $imageName;
         $mobile_model->save();
 
@@ -173,7 +164,7 @@ class MobileModelController extends Controller
         }
 
         $price = new Price;
-        
+
         $price->user_id = auth()->user()->id;
         $price->mobile_model_id = $request->mobile_model_id;
         $price->price_type = $request->price_type;
@@ -189,11 +180,10 @@ class MobileModelController extends Controller
     public function destoryPrice($id)
     {
         $price = Price::find($id);
-       
+
         $price->delete();
         Alert::success('Success', 'Mobile Price Deleted successfully.');
         return back();
-       
     }
 
     // public function edit($id)
@@ -204,19 +194,23 @@ class MobileModelController extends Controller
 
     public function update(Request $request, $id)
     {
-        $mobile_model = MobileModel::find($id); 
-        $mobile_network = Network::where('mobile_model_id',$id)->first();
-        $mobile_launch = Launch::where('mobile_model_id',$id)->first();
-        $mobile_body = Body::where('mobile_model_id',$id)->first();
-        $mobile_display = Display::where('mobile_model_id',$id)->first();
-        $mobile_platform = Platform::where('mobile_model_id',$id)->first();
-        $mobile_memory = Memory::where('mobile_model_id',$id)->first();
-        $mobile_main_camera = MainCamera::where('mobile_model_id',$id)->first();
-        $mobile_selfie_camera = SelfieCamera::where('mobile_model_id',$id)->first();
-        $mobile_sound = Sound::where('mobile_model_id',$id)->first();
-        $mobile_connectivity = Connectivity::where('mobile_model_id',$id)->first();
-        $mobile_feature = Feature::where('mobile_model_id',$id)->first();
-        $mobile_battery = Battery::where('mobile_model_id',$id)->first();
+        $mobile_model = MobileModel::find($id);
+        if (!in_array(auth()->user()->role, ['super-admin', 'admin']) && $mobile_model->published_at != null) {
+            Alert::error('Validation Error', "You can't edit this model");
+            return redirect()->back()->withInput();
+        }
+        $mobile_network = Network::where('mobile_model_id', $id)->first();
+        $mobile_launch = Launch::where('mobile_model_id', $id)->first();
+        $mobile_body = Body::where('mobile_model_id', $id)->first();
+        $mobile_display = Display::where('mobile_model_id', $id)->first();
+        $mobile_platform = Platform::where('mobile_model_id', $id)->first();
+        $mobile_memory = Memory::where('mobile_model_id', $id)->first();
+        $mobile_main_camera = MainCamera::where('mobile_model_id', $id)->first();
+        $mobile_selfie_camera = SelfieCamera::where('mobile_model_id', $id)->first();
+        $mobile_sound = Sound::where('mobile_model_id', $id)->first();
+        $mobile_connectivity = Connectivity::where('mobile_model_id', $id)->first();
+        $mobile_feature = Feature::where('mobile_model_id', $id)->first();
+        $mobile_battery = Battery::where('mobile_model_id', $id)->first();
 
 
         $validator = Validator::make($request->all(), [
@@ -234,47 +228,45 @@ class MobileModelController extends Controller
             return redirect()->back()->withInput();
         }
 
-        if($request->file('model_image') != null && $mobile_model->model_image != null)
-        {
-            $folder='images/model_images';
-            $imageName = $request->get('model_slug').'.'.$request->model_image->extension();
+        if ($request->file('model_image') != null && $mobile_model->model_image != null) {
+            $folder = 'images/model_images';
+            $imageName = $request->get('model_slug') . '.' . $request->model_image->extension();
             $request->model_image->move(public_path($folder), $imageName);
-            unlink("images/model_images/".$mobile_model->model_image);
+            unlink("images/model_images/" . $mobile_model->model_image);
             $mobile_model->model_image = $imageName;
         }
-        
-        if($request->file('model_image') != null && $mobile_model->model_image == null)
-        {
-            $folder='images/model_images';
-            $imageName = $request->get('model_slug').'.'.$request->model_image->extension();
+
+        if ($request->file('model_image') != null && $mobile_model->model_image == null) {
+            $folder = 'images/model_images';
+            $imageName = $request->get('model_slug') . '.' . $request->model_image->extension();
             $request->model_image->move(public_path($folder), $imageName);
             $mobile_model->model_image = $imageName;
         }
-        
+
         // mobile model
-        $mobile_model->user_id = auth()->user()->id;  
-        $mobile_model->mobile_brand_id = $request->get('mobile_brand_id');  
-        $mobile_model->model_colors = $request->get('model_colors');  
-        $mobile_model->model_name = $request->get('model_name');  
-        $mobile_model->model_slug = $request->get('model_slug');  
-        $mobile_model->model_title = $request->get('model_title');  
-        $mobile_model->model_description = $request->get('model_description');  
-        $mobile_model->model_Keyword = $request->get('model_Keyword'); 
-        $mobile_model->model_other = $request->get('model_other'); 
-        $mobile_model->model_type = $request->get('model_type'); 
-        $mobile_model->highlight = $request->get('highlight'); 
-        $mobile_model->pros = $request->get('pros'); 
-        $mobile_model->cons = $request->get('cons'); 
-        $mobile_model->questions = $request->get('questions'); 
+        $mobile_model->user_id = auth()->user()->id;
+        $mobile_model->mobile_brand_id = $request->get('mobile_brand_id');
+        $mobile_model->model_colors = $request->get('model_colors');
+        $mobile_model->model_name = $request->get('model_name');
+        $mobile_model->model_slug = $request->get('model_slug');
+        $mobile_model->model_title = $request->get('model_title');
+        $mobile_model->model_description = $request->get('model_description');
+        $mobile_model->model_Keyword = $request->get('model_Keyword');
+        $mobile_model->model_other = $request->get('model_other');
+        $mobile_model->model_type = $request->get('model_type');
+        $mobile_model->highlight = $request->get('highlight');
+        $mobile_model->pros = $request->get('pros');
+        $mobile_model->cons = $request->get('cons');
+        $mobile_model->questions = $request->get('questions');
         $mobile_model->save();
 
         // model network
-        $mobile_network->technology = $request->get('technology'); 
-        $mobile_network->_2g_bands = $request->get('_2g_bands'); 
-        $mobile_network->_3g_bands = $request->get('_3g_bands'); 
-        $mobile_network->_4g_bands = $request->get('_4g_bands'); 
-        $mobile_network->_5g_bands = $request->get('_5g_bands'); 
-        $mobile_network->speed = $request->get('speed'); 
+        $mobile_network->technology = $request->get('technology');
+        $mobile_network->_2g_bands = $request->get('_2g_bands');
+        $mobile_network->_3g_bands = $request->get('_3g_bands');
+        $mobile_network->_4g_bands = $request->get('_4g_bands');
+        $mobile_network->_5g_bands = $request->get('_5g_bands');
+        $mobile_network->speed = $request->get('speed');
         $mobile_network->network_other = $request->get('network_other');
         $mobile_network->save();
 
@@ -282,7 +274,7 @@ class MobileModelController extends Controller
         $mobile_launch->announced = $request->get('announced');
         $mobile_launch->launch_status = $request->get('launch_status');
         $mobile_launch->launche_other = $request->get('launche_other');
-        $mobile_launch->save(); 
+        $mobile_launch->save();
 
         // model body
         $mobile_body->dimensions = $request->get('dimensions');
@@ -320,7 +312,7 @@ class MobileModelController extends Controller
         $mobile_main_camera->main_camera_video = $request->get('main_camera_video');
         $mobile_main_camera->main_camera_other = $request->get('main_camera_other');
         $mobile_main_camera->save();
-     
+
         // model selfie_Camera
         $mobile_selfie_camera->selfie_camera_camera = $request->get('selfie_camera_camera');
         $mobile_selfie_camera->selfie_camera_features = $request->get('selfie_camera_features');
@@ -333,7 +325,7 @@ class MobileModelController extends Controller
         $mobile_sound->_3_5mm_jack = $request->get('_3_5mm_jack');
         $mobile_sound->sound_other = $request->get('sound_other');
         $mobile_sound->save();
-        
+
         // model connectivity
         $mobile_connectivity->wlan = $request->get('wlan');
         $mobile_connectivity->bluetooth = $request->get('bluetooth');
@@ -349,7 +341,7 @@ class MobileModelController extends Controller
         $mobile_feature->sensors = $request->get('sensors');
         $mobile_feature->feature_other = $request->get('feature_other');
         $mobile_feature->save();
-    
+
         // model battery
         $mobile_battery->battery_type = $request->get('battery_type');
         $mobile_battery->charging = $request->get('charging');
@@ -382,11 +374,11 @@ class MobileModelController extends Controller
         $mobiles = json_decode(file_get_contents($request->file('file')), true);
         $model_name = pathinfo($request->file->getClientOriginalName(), PATHINFO_FILENAME);
 
-        $networks =[];
-        $launches =[];
-        $bodies =[];
-        $displays =[];
-        $platforms =[];
+        $networks = [];
+        $launches = [];
+        $bodies = [];
+        $displays = [];
+        $platforms = [];
         $memories = [];
         $main_cameras = [];
         $selfie_cameras = [];
@@ -396,73 +388,58 @@ class MobileModelController extends Controller
         $batteries = [];
         $model_details = [];
 
-        foreach( $mobiles as  $mobile)
-        {
-            if($mobile['data'] == "Network")
-            {
+        foreach ($mobiles as  $mobile) {
+            if ($mobile['data'] == "Network") {
                 array_push($networks, $mobile);
             }
 
-            if($mobile['data'] == "Launch")
-            {
+            if ($mobile['data'] == "Launch") {
                 array_push($launches, $mobile);
             }
 
-            if($mobile['data'] == "Body")
-            {
+            if ($mobile['data'] == "Body") {
                 array_push($bodies, $mobile);
             }
 
-            if($mobile['data'] == "Display")
-            {
+            if ($mobile['data'] == "Display") {
                 array_push($displays, $mobile);
             }
 
-            if($mobile['data'] == "Platform")
-            {
+            if ($mobile['data'] == "Platform") {
                 array_push($platforms, $mobile);
             }
 
-            if($mobile['data'] == "Memory")
-            {
+            if ($mobile['data'] == "Memory") {
                 array_push($memories, $mobile);
             }
 
-            if($mobile['data'] == "Main Camera")
-            {
+            if ($mobile['data'] == "Main Camera") {
                 array_push($main_cameras, $mobile);
             }
 
-            if($mobile['data'] == "Selfie camera")
-            {
+            if ($mobile['data'] == "Selfie camera") {
                 array_push($selfie_cameras, $mobile);
             }
 
-            if($mobile['data'] == "Sound")
-            {
+            if ($mobile['data'] == "Sound") {
                 array_push($sounds, $mobile);
             }
 
-            if($mobile['data'] == "Comms")
-            {
+            if ($mobile['data'] == "Comms") {
                 array_push($connectivities, $mobile);
             }
 
-            if($mobile['data'] == "Features")
-            {
+            if ($mobile['data'] == "Features") {
                 array_push($features, $mobile);
             }
 
-            if($mobile['data'] == "Battery")
-            {
+            if ($mobile['data'] == "Battery") {
                 array_push($batteries, $mobile);
             }
 
-            if($mobile['data'] == "Misc")
-            {
+            if ($mobile['data'] == "Misc") {
                 array_push($model_details, $mobile);
             }
-            
         }
 
         $mobile_model_id = $this->mobileModel($model_name, $model_details);
@@ -483,7 +460,6 @@ class MobileModelController extends Controller
         return response()->json([
             'mobile_model_id' =>  $mobile_model_id
         ]);
-            
     }
 
     public function mobileModel($model_name, $model_details)
@@ -511,7 +487,7 @@ class MobileModelController extends Controller
         $network->speed = isset($request) ? $request->speed : $this->getTopicValue($networks, 'Speed');
         $network->network_other = isset($request) ? $request->network_other : $this->getTopicValue($networks, 'other');
 
-        $network->save();  
+        $network->save();
     }
 
     public function launch($launches, $mobile_model_id, $request)
@@ -672,19 +648,17 @@ class MobileModelController extends Controller
     public function getTopicValue($networks, $search_topic)
     {
         $found_key = array_search($search_topic, array_column($networks, 'topic'));
-        if( $found_key !== false) {
+        if ($found_key !== false) {
             return $networks[$found_key]['details'];
         }
-        
     }
 
     public function getCameraValue($networks)
     {
         $cameras = ['Single', 'Dual', 'Triple', 'Quad', 'Penta'];
-        foreach($cameras as $camera)
-        {
+        foreach ($cameras as $camera) {
             $found_key = array_search($camera, array_column($networks, 'topic'));
-            if( $found_key !== false) {
+            if ($found_key !== false) {
                 return $networks[$found_key]['details'];
             }
         }

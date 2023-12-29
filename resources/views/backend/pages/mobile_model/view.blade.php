@@ -88,7 +88,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($prices as $price)
+                            @foreach ($mobile_model->prices as $price)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $price->variant }}</td>
@@ -154,9 +154,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 {{ checkMobileModelViewClass($mobile_brand->brand_name) }}">
-                                    Brand Name: {{ checkMobileModelViewField($mobile_brand->brand_name) }}
-                                </div>
+                                @if ($mobile_model->mobileBrand)
+                                    <div
+                                        class="col-md-6 {{ checkMobileModelViewClass($mobile_model->mobileBrand->brand_name) }}">
+                                        Brand Name: {{ checkMobileModelViewField($mobile_model->mobileBrand->brand_name) }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -170,217 +173,262 @@
                     <hr>
                     <h5>Model Network Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->technology) }}">
-                            Technology: {{ checkMobileModelViewField($network->technology) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->_2g_bands) }}">
-                            2G Bands: {{ checkMobileModelViewField($network->_2g_bands) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->_3g_bands) }}">
-                            3G Bands: {{ checkMobileModelViewField($network->_3g_bands) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->_4g_bands) }}">
-                            4G Bands: {{ checkMobileModelViewField($network->_4g_bands) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->_5g_bands) }}">
-                            5G Bands: {{ checkMobileModelViewField($network->_5g_bands) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->speed) }}">
-                            Speed: {{ checkMobileModelViewField($network->speed) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($network->network_other) }}">
-                            Network Other: {{ checkMobileModelViewField($network->network_other) }}
-                        </div>
+                        @if ($mobile_model->network)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->technology) }}">
+                                Technology: {{ checkMobileModelViewField($mobile_model->network->technology) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->_2g_bands) }}">
+                                2G Bands: {{ checkMobileModelViewField($mobile_model->network->_2g_bands) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->_3g_bands) }}">
+                                3G Bands: {{ checkMobileModelViewField($mobile_model->network->_3g_bands) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->_4g_bands) }}">
+                                4G Bands: {{ checkMobileModelViewField($mobile_model->network->_4g_bands) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->_5g_bands) }}">
+                                5G Bands: {{ checkMobileModelViewField($mobile_model->network->_5g_bands) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->speed) }}">
+                                Speed: {{ checkMobileModelViewField($mobile_model->network->speed) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->network->network_other) }}">
+                                Network Other: {{ checkMobileModelViewField($mobile_model->network->network_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Launch Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($launch->announced) }}">
-                            Announced: {{ checkMobileModelViewField($launch->announced) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($launch->launch_status) }}">
-                            Status: {{ checkMobileModelViewField($launch->launch_status) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($launch->launche_other) }}">
-                            Launche Other: {{ checkMobileModelViewField($launch->launche_other) }}
-                        </div>
+                        @if ($mobile_model->launch)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->launch->announced) }}">
+                                Announced: {{ checkMobileModelViewField($mobile_model->launch->announced) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->launch->launch_status) }}">
+                                Status: {{ checkMobileModelViewField($mobile_model->launch->launch_status) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->launch->launche_other) }}">
+                                Launche Other: {{ checkMobileModelViewField($mobile_model->launch->launche_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Body Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($body->dimensions) }}">
-                            Dimensions: {{ checkMobileModelViewField($body->dimensions) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($body->weight) }}">
-                            Weight: {{ checkMobileModelViewField($body->weight) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($body->build) }}">
-                            Build: {{ checkMobileModelViewField($body->build) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($body->sim) }}">
-                            SIM: {{ checkMobileModelViewField($body->sim) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($body->body_other) }}">
-                            Body Other: {{ checkMobileModelViewField($body->body_other) }}
-                        </div>
+                        @if ($mobile_model->body)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->body->dimensions) }}">
+                                Dimensions: {{ checkMobileModelViewField($mobile_model->body->dimensions) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->body->weight) }}">
+                                Weight: {{ checkMobileModelViewField($mobile_model->body->weight) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->body->build) }}">
+                                Build: {{ checkMobileModelViewField($mobile_model->body->build) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->body->sim) }}">
+                                SIM: {{ checkMobileModelViewField($mobile_model->body->sim) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->body->body_other) }}">
+                                Body Other: {{ checkMobileModelViewField($mobile_model->body->body_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Display Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($display->display_type) }}">
-                            Display Type: {{ checkMobileModelViewField($display->display_type) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($display->display_size) }}">
-                            Display Size: {{ checkMobileModelViewField($display->display_size) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($display->resolution) }}">
-                            Resolution: {{ checkMobileModelViewField($display->resolution) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($display->protection) }}">
-                            Display Protection: {{ checkMobileModelViewField($display->protection) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($display->display_other) }}">
-                            Display Other: {{ checkMobileModelViewField($display->display_other) }}
-                        </div>
+                        @if ($mobile_model->display)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->display->display_type) }}">
+                                Display Type: {{ checkMobileModelViewField($mobile_model->display->display_type) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->display->display_size) }}">
+                                Display Size: {{ checkMobileModelViewField($mobile_model->display->display_size) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->display->resolution) }}">
+                                Resolution: {{ checkMobileModelViewField($mobile_model->display->resolution) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->display->protection) }}">
+                                Display Protection: {{ checkMobileModelViewField($mobile_model->display->protection) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->display->display_other) }}">
+                                Display Other: {{ checkMobileModelViewField($mobile_model->display->display_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Platform Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($platform->os) }}">
-                            OS: {{ checkMobileModelViewField($platform->os) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($platform->chipset) }}">
-                            Chipset: {{ checkMobileModelViewField($platform->chipset) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($platform->cpu) }}">
-                            CPU: {{ checkMobileModelViewField($platform->cpu) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($platform->gpu) }}">
-                            GPU: {{ checkMobileModelViewField($platform->gpu) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($platform->platform_other) }}">
-                            Platform Other: {{ checkMobileModelViewField($platform->platform_other) }}
-                        </div>
+                        @if ($mobile_model->platform)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->platform->os) }}">
+                                OS: {{ checkMobileModelViewField($mobile_model->platform->os) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->platform->chipset) }}">
+                                Chipset: {{ checkMobileModelViewField($mobile_model->platform->chipset) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->platform->cpu) }}">
+                                CPU: {{ checkMobileModelViewField($mobile_model->platform->cpu) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->platform->gpu) }}">
+                                GPU: {{ checkMobileModelViewField($mobile_model->platform->gpu) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->platform->platform_other) }}">
+                                Platform Other: {{ checkMobileModelViewField($mobile_model->platform->platform_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Memory Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($memory->card_slot) }}">
-                            Card Slot: {{ checkMobileModelViewField($memory->card_slot) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($memory->internal) }}">
-                            Internal: {{ checkMobileModelViewField($memory->internal) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($memory->memory_other) }}">
-                            Memory Other: {{ checkMobileModelViewField($memory->memory_other) }}
-                        </div>
+                        @if ($mobile_model->memory)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->memory->card_slot) }}">
+                                Card Slot: {{ checkMobileModelViewField($mobile_model->memory->card_slot) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->memory->internal) }}">
+                                Internal: {{ checkMobileModelViewField($mobile_model->memory->internal) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->memory->memory_other) }}">
+                                Memory Other: {{ checkMobileModelViewField($mobile_model->memory->memory_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Main Camera Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($mainCamera->main_camera_camera) }}">
-                            Main Camera: {{ checkMobileModelViewField($mainCamera->main_camera_camera) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($mainCamera->main_camera_features) }}">
-                            Main Camera Features: {{ checkMobileModelViewField($mainCamera->main_camera_features) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($mainCamera->main_camera_video) }}">
-                            Main Camera Video: {{ checkMobileModelViewField($mainCamera->main_camera_video) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($mainCamera->main_camera_other) }}">
-                            Main Camera Other: {{ checkMobileModelViewField($mainCamera->main_camera_other) }}
-                        </div>
+                        @if ($mobile_model->mainCamera)
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->mainCamera->main_camera_camera) }}">
+                                Main Camera: {{ checkMobileModelViewField($mobile_model->mainCamera->main_camera_camera) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->mainCamera->main_camera_features) }}">
+                                Main Camera Features:
+                                {{ checkMobileModelViewField($mobile_model->mainCamera->main_camera_features) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->mainCamera->main_camera_video) }}">
+                                Main Camera Video:
+                                {{ checkMobileModelViewField($mobile_model->mainCamera->main_camera_video) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->mainCamera->main_camera_other) }}">
+                                Main Camera Other:
+                                {{ checkMobileModelViewField($mobile_model->mainCamera->main_camera_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Selfie Camera Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($selfieCamera->selfie_camera_camera) }}">
-                            Selfie Camera: {{ checkMobileModelViewField($selfieCamera->selfie_camera_camera) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($selfieCamera->selfie_camera_features) }}">
-                            Selfie Camera Features: {{ checkMobileModelViewField($selfieCamera->selfie_camera_features) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($selfieCamera->selfie_camera_video) }}">
-                            Selfie Camera Video: {{ checkMobileModelViewField($selfieCamera->selfie_camera_video) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($selfieCamera->selfie_camera_other) }}">
-                            Selfie Camera Other: {{ checkMobileModelViewField($selfieCamera->selfie_camera_other) }}
-                        </div>
+                        @if ($mobile_model->selfieCamera)
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->selfieCamera->selfie_camera_camera) }}">
+                                Selfie Camera:
+                                {{ checkMobileModelViewField($mobile_model->selfieCamera->selfie_camera_camera) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->selfieCamera->selfie_camera_features) }}">
+                                Selfie Camera Features:
+                                {{ checkMobileModelViewField($mobile_model->selfieCamera->selfie_camera_features) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->selfieCamera->selfie_camera_video) }}">
+                                Selfie Camera Video:
+                                {{ checkMobileModelViewField($mobile_model->selfieCamera->selfie_camera_video) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->selfieCamera->selfie_camera_other) }}">
+                                Selfie Camera Other:
+                                {{ checkMobileModelViewField($mobile_model->selfieCamera->selfie_camera_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Sound Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($sound->loudspeaker) }}">
-                            Loudspeaker: {{ checkMobileModelViewField($sound->loudspeaker) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($sound->_3_5mm_jack) }}">
-                            3.5mm Jack: {{ checkMobileModelViewField($sound->_3_5mm_jack) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($sound->sound_other) }}">
-                            Sound Other: {{ checkMobileModelViewField($sound->sound_other) }}
-                        </div>
+                        @if ($mobile_model->sound)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->sound->loudspeaker) }}">
+                                Loudspeaker: {{ checkMobileModelViewField($mobile_model->sound->loudspeaker) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->sound->_3_5mm_jack) }}">
+                                3.5mm Jack: {{ checkMobileModelViewField($mobile_model->sound->_3_5mm_jack) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->sound->sound_other) }}">
+                                Sound Other: {{ checkMobileModelViewField($mobile_model->sound->sound_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Connectivity Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->wlan) }}">
-                            WLAN: {{ checkMobileModelViewField($connectivity->wlan) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->bluetooth) }}">
-                            Bluetooth: {{ checkMobileModelViewField($connectivity->bluetooth) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->positioning) }}">
-                            Positioning: {{ checkMobileModelViewField($connectivity->positioning) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->nfc) }}">
-                            NFC: {{ checkMobileModelViewField($connectivity->nfc) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->infrared_port) }}">
-                            Infrared Port: {{ checkMobileModelViewField($connectivity->infrared_port) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->radio) }}">
-                            Radio: {{ checkMobileModelViewField($connectivity->radio) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->usb) }}">
-                            USB: {{ checkMobileModelViewField($connectivity->usb) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($connectivity->connectivity_other) }}">
-                            Connectivity Other: {{ checkMobileModelViewField($connectivity->connectivity_other) }}
-                        </div>
+                        @if ($mobile_model->connectivity)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->wlan) }}">
+                                WLAN: {{ checkMobileModelViewField($mobile_model->connectivity->wlan) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->bluetooth) }}">
+                                Bluetooth: {{ checkMobileModelViewField($mobile_model->connectivity->bluetooth) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->positioning) }}">
+                                Positioning: {{ checkMobileModelViewField($mobile_model->connectivity->positioning) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->nfc) }}">
+                                NFC: {{ checkMobileModelViewField($mobile_model->connectivity->nfc) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->infrared_port) }}">
+                                Infrared Port: {{ checkMobileModelViewField($mobile_model->connectivity->infrared_port) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->radio) }}">
+                                Radio: {{ checkMobileModelViewField($mobile_model->connectivity->radio) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->usb) }}">
+                                USB: {{ checkMobileModelViewField($mobile_model->connectivity->usb) }}
+                            </div>
+                            <div
+                                class="col-md-4 {{ checkMobileModelViewClass($mobile_model->connectivity->connectivity_other) }}">
+                                Connectivity Other:
+                                {{ checkMobileModelViewField($mobile_model->connectivity->connectivity_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Feature Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($feature->sensors) }}">
-                            Sensors: {{ checkMobileModelViewField($feature->sensors) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($feature->feature_other) }}">
-                            Feature Other: {{ checkMobileModelViewField($feature->feature_other) }}
-                        </div>
+                        @if ($mobile_model->feature)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->feature->sensors) }}">
+                                Sensors: {{ checkMobileModelViewField($mobile_model->feature->sensors) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->feature->feature_other) }}">
+                                Feature Other: {{ checkMobileModelViewField($mobile_model->feature->feature_other) }}
+                            </div>
+                        @endif
                     </div>
 
                     <hr>
                     <h5>Model Battery Section:</h5>
                     <div class="row">
-                        <div class="col-md-4 {{ checkMobileModelViewClass($battery->battery_type) }}">
-                            Battery Type: {{ checkMobileModelViewField($battery->battery_type) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($battery->charging) }}">
-                            Charging: {{ checkMobileModelViewField($battery->charging) }}
-                        </div>
-                        <div class="col-md-4 {{ checkMobileModelViewClass($battery->battery_other) }}">
-                            Battery Other: {{ checkMobileModelViewField($battery->battery_other) }}
-                        </div>
+                        @if ($mobile_model->battery)
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->battery->battery_type) }}">
+                                Battery Type: {{ checkMobileModelViewField($mobile_model->battery->battery_type) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->battery->charging) }}">
+                                Charging: {{ checkMobileModelViewField($mobile_model->battery->charging) }}
+                            </div>
+                            <div class="col-md-4 {{ checkMobileModelViewClass($mobile_model->battery->battery_other) }}">
+                                Battery Other: {{ checkMobileModelViewField($mobile_model->battery->battery_other) }}
+                            </div>
+                        @endif
                     </div>
 
                 </div>

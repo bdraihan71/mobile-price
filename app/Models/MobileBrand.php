@@ -10,7 +10,7 @@ class MobileBrand extends Model
 {
     use HasFactory, SoftDeletes;    
 
-    public function mobileBrands()
+    public function mobileModels()
     {
         return $this->hasMany(MobileModel::class);
     }
