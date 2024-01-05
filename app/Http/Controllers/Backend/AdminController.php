@@ -64,11 +64,11 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             Alert::success('Success', 'You have Successfully loggedin');
-            return redirect()->route('mobile.brand.index');
+            return redirect()->route('mobile.model.index');
         }
   
     }
-
+ 
     public function logout()
     {
         Auth::logout();
