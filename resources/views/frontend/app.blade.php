@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="col-12">
-                    <p>&copy; 2023 <a href="https://mobilekhor.com" class="text-white">mobilekhor.com</a> || All rights
+                    <p>&copy; 2024 <a href="https://mobilekhor.com" class="text-white">mobilekhor.com</a> || All rights
                         reserved</p>
                 </div>
             </div>

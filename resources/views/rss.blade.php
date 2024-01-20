@@ -3,14 +3,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
         <title>
-            <![CDATA[ Mobile Phone Price in Bangladesh 2023 | mobilekhor.com ]]>
+            <![CDATA[ Mobile Phone Price in Bangladesh 2024 | mobilekhor.com ]]>
         </title>
         <atom:link href="https://mobilekhor.com/feed" rel="self" type="application/rss+xml" />
         <link>
         <![CDATA[ https://mobilekhor.com/feed ]]>
         </link>
         <description>
-            <![CDATA[ mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2023. ]]>
+            <![CDATA[ mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2024. ]]>
         </description>
         <language>en</language>
         <pubDate>{{ now()->toRssString() }}</pubDate>

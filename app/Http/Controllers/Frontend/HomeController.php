@@ -21,22 +21,22 @@ class HomeController extends Controller
                 ->latest('published_at')->paginate(24);
 
         // Seo 
-        SEOMeta::setTitle("Mobile Phone Price in Bangladesh 2023 | mobilekhor.com");
-        SEOMeta::setDescription("mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2023.");
+        SEOMeta::setTitle("Mobile Phone Price in Bangladesh 2024 | mobilekhor.com");
+        SEOMeta::setDescription("mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2024.");
         SEOMeta::setCanonical(URL::full());
         SEOMeta::addKeyword(['mobilekhor', 'mobile price in bangladesh', 'mobile price in bd']);
         SEOMeta::setRobots("index, follow");
 
-        OpenGraph::setTitle('Mobile Phone Price in Bangladesh 2023 | mobilekhor.com');
-        OpenGraph::setDescription('mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2023.');
+        OpenGraph::setTitle('Mobile Phone Price in Bangladesh 2024 | mobilekhor.com');
+        OpenGraph::setDescription('mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2024.');
         OpenGraph::setUrl(URL::full());
         OpenGraph::addProperty('locale', 'en_US');
         OpenGraph::addProperty('type', 'website');
         OpenGraph::addProperty('site_name', 'mobilekhor.com');
         OpenGraph::addImage(url()->current().'/images/logo.png');
 
-        JsonLd::setTitle("Mobile Phone Price in Bangladesh 2023 | mobilekhor.com");
-        JsonLd::setDescription('mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2023.');
+        JsonLd::setTitle("Mobile Phone Price in Bangladesh 2024 | mobilekhor.com");
+        JsonLd::setDescription('mobilekhor.com - find new and latest mobile phone, smartphone, feature phone etc. official and unoffiacal price in Bangladesh 2024.');
         JsonLd::setType('website');
         JsonLd::addImage(url()->current().'/images/logo.png');
 
@@ -52,13 +52,13 @@ class HomeController extends Controller
 
         // Seo 
         SEOMeta::setTitle("Mobile phones all brands | Mobile all brand price in bd");
-        SEOMeta::setDescription("Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2023.");
+        SEOMeta::setDescription("Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2024.");
         SEOMeta::setCanonical( url()->current() );
         SEOMeta::addKeyword(['Mobile phones brands', 'mobile price in bangladesh', 'mobile price in bd']);
         SEOMeta::setRobots("index, follow");
 
         OpenGraph::setTitle('Mobile phones all brands | Mobile all brand price in bd');
-        OpenGraph::setDescription('Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2023.');
+        OpenGraph::setDescription('Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2024.');
         OpenGraph::setUrl(url()->current());
         OpenGraph::addProperty('locale', 'en_US');
         OpenGraph::addProperty('type', 'website');
@@ -66,7 +66,7 @@ class HomeController extends Controller
         OpenGraph::addImage('https://mobilekhor.com/images/logo.png');
 
         JsonLd::setTitle("Mobile phones all brands | Mobile all brand price in bd");
-        JsonLd::setDescription('Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2023.');
+        JsonLd::setDescription('Official all mobile brand list and price in bd. All new Gaming  Mobile Prices in Bangladesh. Best Chinese phones List 2024.');
         JsonLd::setType('website');
         JsonLd::addImage('https://mobilekhor.com/images/logo.png');
 
@@ -128,22 +128,22 @@ class HomeController extends Controller
         ->orderBy('published_at', 'DESC')->paginate(24);
 
         // Seo 
-        SEOMeta::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2023");
-        SEOMeta::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2023. Best phone under " . $higher_price . " taka in Bangladesh.");
+        SEOMeta::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2024");
+        SEOMeta::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2024. Best phone under " . $higher_price . " taka in Bangladesh.");
         SEOMeta::setCanonical(URL::full());
         SEOMeta::addKeyword(['Mobile Phone Price Range', 'mobile price in bangladesh', 'Mobile Phones']);
         SEOMeta::setRobots("index, follow");
 
-        OpenGraph::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2023");
-        OpenGraph::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2023. Best phone under " . $higher_price . " taka in Bangladesh.");
+        OpenGraph::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2024");
+        OpenGraph::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2024. Best phone under " . $higher_price . " taka in Bangladesh.");
         OpenGraph::setUrl(URL::full());
         OpenGraph::addProperty('locale', 'en_US');
         OpenGraph::addProperty('type', 'website');
         OpenGraph::addProperty('site_name', 'mobilekhor.com');
         OpenGraph::addImage('https://mobilekhor.com/images/logo.png');
 
-        JsonLd::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2023");
-        JsonLd::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2023. Best phone under " . $higher_price . " taka in Bangladesh.");
+        JsonLd::setTitle($lower_price - 1  ." to " . $higher_price . " Taka Mobile Price in Bangladesh 2024");
+        JsonLd::setDescription("Best Mobile Phones from " . ($lower_price - 1)   . " under " . $higher_price . " Taka in Bangladesh 2024. Best phone under " . $higher_price . " taka in Bangladesh.");
         JsonLd::setType('website');
         JsonLd::addImage('https://mobilekhor.com/images/logo.png');
 
