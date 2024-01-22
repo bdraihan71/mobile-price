@@ -167,6 +167,7 @@
         });
     </script>
     @stack('scripts')
+    <script type='text/javascript' src='//pl22239887.toprevenuegate.com/fd/0c/cb/fd0ccba1e2feadb07bc06cea2af83ba0.js'></script>
 </body>
 
 </html>
