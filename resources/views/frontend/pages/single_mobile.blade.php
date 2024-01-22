@@ -125,6 +125,11 @@
             </div>
         @endif
 
+        {{-- native ads --}}
+        <script async="async" data-cfasync="false"
+            src="//pl22240365.toprevenuegate.com/b7f6f464eac09e971bbc36b1f46b3234/invoke.js"></script>
+        <div id="container-b7f6f464eac09e971bbc36b1f46b3234"></div>
+
         {{-- mobile overview --}}
         <div class="card">
             <div class="card-header bg-light text-center p-1">
