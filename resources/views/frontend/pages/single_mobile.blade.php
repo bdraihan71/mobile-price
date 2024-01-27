@@ -104,6 +104,20 @@
         </div>
     </div>
 
+    {{-- Banner Ads 300*250 --}}
+    <script type="text/javascript">
+        atOptions = {
+            'key': '4fb5b2bd10986feaf69bcabc03afed88',
+            'format': 'iframe',
+            'height': 250,
+            'width': 300,
+            'params': {}
+        };
+        document.write('<scr' +
+            'ipt type="text/javascript" src="//www.topcreativeformat.com/4fb5b2bd10986feaf69bcabc03afed88/invoke.js"></scr' +
+            'ipt>');
+    </script>
+
     <div class="col-lg-12 mt-4">
         <h5 class="bg-info text-center text-bold p-2">{{ $mobile_model->model_name }} Specifications</h5>
         {{-- mobile price --}}
@@ -125,10 +139,6 @@
             </div>
         @endif
 
-        {{-- native ads --}}
-        <script async="async" data-cfasync="false"
-            src="//pl22240365.toprevenuegate.com/b7f6f464eac09e971bbc36b1f46b3234/invoke.js"></script>
-        <div id="container-b7f6f464eac09e971bbc36b1f46b3234"></div>
 
         {{-- mobile overview --}}
         <div class="card">
@@ -205,6 +215,20 @@
                 @endif
             </div>
         </div>
+
+        {{-- Banner Ads 300*250 --}}
+        <script type="text/javascript">
+            atOptions = {
+                'key': '4fb5b2bd10986feaf69bcabc03afed88',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+            };
+            document.write('<scr' +
+                'ipt type="text/javascript" src="//www.topcreativeformat.com/4fb5b2bd10986feaf69bcabc03afed88/invoke.js"></scr' +
+                'ipt>');
+        </script>
 
         {{-- mobile launch --}}
         @if ($mobile_model->launch)
@@ -493,6 +517,20 @@
             </div>
         @endif
 
+
+        {{-- Banner Ads 300*250 --}}
+        <script type="text/javascript">
+            atOptions = {
+                'key': '4fb5b2bd10986feaf69bcabc03afed88',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+            };
+            document.write('<scr' +
+                'ipt type="text/javascript" src="//www.topcreativeformat.com/4fb5b2bd10986feaf69bcabc03afed88/invoke.js"></scr' +
+                'ipt>');
+        </script>
 
         {{-- mobile main camera --}}
         @if ($mobile_model->mainCamera)

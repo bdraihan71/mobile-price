@@ -39,10 +39,9 @@
         gtag('config', 'G-7DHNJ4GXVM');
     </script>
 
-<!-- for google adsense
+    <!-- for google adsense
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8064548605275187"
-        crossorigin="anonymous">
-    </script>-->
+        crossorigin="anonymous"></script>-->
 </head>
 
 <body>
@@ -167,7 +166,8 @@
         });
     </script>
     @stack('scripts')
-    <script type='text/javascript' src='//pl22239887.toprevenuegate.com/fd/0c/cb/fd0ccba1e2feadb07bc06cea2af83ba0.js'></script>
+    <script type='text/javascript' src='//pl22239887.toprevenuegate.com/fd/0c/cb/fd0ccba1e2feadb07bc06cea2af83ba0.js'>
+    </script>
 </body>
 
 </html>
