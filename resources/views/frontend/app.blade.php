@@ -42,10 +42,6 @@
     <!-- for google adsense
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8064548605275187"
         crossorigin="anonymous"></script>-->
-    
-        {{-- for popunder ads --}}
-    <script type='text/javascript' src='//pl22297839.toprevenuegate.com/26/ba/17/26ba17fe0c8833a40cb079f367717113.js'>
-    </script>
 </head>
 
 <body>
@@ -170,9 +166,6 @@
         });
     </script>
     @stack('scripts')
-    <!-- social bar ads -->
-    <script type='text/javascript' src='//pl22239887.toprevenuegate.com/fd/0c/cb/fd0ccba1e2feadb07bc06cea2af83ba0.js'>
-    </script>
 </body>
 
 </html>
